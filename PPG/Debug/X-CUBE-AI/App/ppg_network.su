@@ -1,0 +1,11 @@
+../X-CUBE-AI/App/ppg_network.c:1606:9:ai_ppg_network_get_info	144	static
+../X-CUBE-AI/App/ppg_network.c:1652:9:ai_ppg_network_get_report	144	static
+../X-CUBE-AI/App/ppg_network.c:1698:10:ai_ppg_network_get_error	0	static
+../X-CUBE-AI/App/ppg_network.c:1704:10:ai_ppg_network_create	16	static
+../X-CUBE-AI/App/ppg_network.c:1748:12:ai_ppg_network_inputs_get	0	static
+../X-CUBE-AI/App/ppg_network.c:1758:12:ai_ppg_network_outputs_get	0	static
+../X-CUBE-AI/App/ppg_network.c:1768:11:ai_ppg_network_destroy	0	static
+../X-CUBE-AI/App/ppg_network.c:1774:9:ai_ppg_network_init	24	static
+../X-CUBE-AI/App/ppg_network.c:1714:10:ai_ppg_network_create_and_init	88	static
+../X-CUBE-AI/App/ppg_network.c:1791:8:ai_ppg_network_run	0	static
+../X-CUBE-AI/App/ppg_network.c:1798:8:ai_ppg_network_forward	0	static

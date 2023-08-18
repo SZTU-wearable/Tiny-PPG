@@ -1,0 +1,11 @@
+ppg_network.c:1606:9:ai_ppg_network_get_info	4
+ppg_network.c:1652:9:ai_ppg_network_get_report	4
+ppg_network.c:1698:10:ai_ppg_network_get_error	1
+ppg_network.c:1704:10:ai_ppg_network_create	1
+ppg_network.c:1748:12:ai_ppg_network_inputs_get	2
+ppg_network.c:1758:12:ai_ppg_network_outputs_get	2
+ppg_network.c:1768:11:ai_ppg_network_destroy	1
+ppg_network.c:1774:9:ai_ppg_network_init	4
+ppg_network.c:1714:10:ai_ppg_network_create_and_init	8
+ppg_network.c:1791:8:ai_ppg_network_run	1
+ppg_network.c:1798:8:ai_ppg_network_forward	1

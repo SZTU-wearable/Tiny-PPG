@@ -1,0 +1,399 @@
+Neural Network Tools for STM32AI v1.6.0 (STM.ai v7.3.0-RC5)
+Created date          : 2023-05-09 01:18:54
+Parameters            : generate --name ppg_network -m D:/zzz/ML/Segade-main/ppg_motion_model.h5 --type keras --compression none --verbosity 1 --workspace C:\Users\Z\AppData\Local\Temp\mxAI_workspace4371248054100016274112858605923475 --output C:\Users\Z\.stm32cubemx\network_output --allocate-inputs --allocate-outputs
+
+Exec/report summary (generate)
+------------------------------------------------------------------------------------------------------
+model file         :   D:\zzz\ML\Segade-main\ppg_motion_model.h5                                     
+type               :   keras                                                                         
+c_name             :   ppg_network                                                                   
+compression        :   none                                                                          
+options            :   allocate-inputs, allocate-outputs                                             
+optimization       :   balanced                                                                      
+target/series      :   generic                                                                       
+workspace dir      :   C:\Users\Z\AppData\Local\Temp\mxAI_workspace4371248054100016274112858605923475
+output dir         :   C:\Users\Z\.stm32cubemx\network_output                                        
+model_fmt          :   float                                                                         
+model_name         :   ppg_motion_model                                                              
+model_hash         :   d194b1a5ee37949b574bff94572917cb                                              
+params #           :   7,619 items (29.76 KiB)                                                       
+------------------------------------------------------------------------------------------------------
+input 1/1          :   'input_2' (domain:activations/**default**)                                    
+                   :   1920 items, 7.50 KiB, ai_float, float, (1,1920,1,1)                           
+output 1/1         :   'seg_out_conv2d' (domain:activations/**default**)                             
+                   :   1920 items, 7.50 KiB, ai_float, float, (1,1920,1,1)                           
+macc               :   2,559,848                                                                     
+weights (ro)       :   29,960 B (29.26 KiB) (1 segment) / -516(-1.7%) vs float model                 
+activations (rw)   :   125,808 B (122.86 KiB) (1 segment) *                                          
+ram (total)        :   125,808 B (122.86 KiB) = 125,808 + 0 + 0                                      
+------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - ppg_motion_model ['input_2'] ['seg_out_conv2d']
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+id   layer (type,original)                                        oshape                 param/size     macc      connected to                       |   c_size             c_macc               c_type                  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+0    input_2 (Input, InputLayer)                                  [b:None,h:1920,c:1]                                                                |                                          
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1    separable_conv1d_4_conv2d (Conv2D, SeparableConv1D)          [b:None,h:1920,c:1]    80/320         153,600   input_2                            |   +4(+1.2%)          +1(+0.0%)            conv2d_of32[0]          
+     separable_conv1d_4_separableconv (Conv2D, SeparableConv1D)   [b:None,h:1920,c:8]    8/32           15,360    separable_conv1d_4_conv2d          |   -32(-100.0%)       -15,360(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2    batch_normalization_10 (ScaleBias, BatchNormalization)       [b:None,h:1920,c:8]    16/64          30,720    separable_conv1d_4_separableconv   |   -64(-100.0%)       -30,720(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3    activation_5 (Nonlinearity, Activation)                      [b:None,h:1920,c:8]                   15,360    batch_normalization_10             |                      -15,360(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4    max_pooling1d_3 (Pool, MaxPooling1D)                         [b:None,h:960,c:8]                    15,360    activation_5                       |   +64(+100.0%)       +30,728(+200.1%)     optimized_conv2d_of32[1]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5    separable_conv1d_5_conv2d (Conv2D, SeparableConv1D)          [b:None,h:960,c:8]     320/1,280      307,200   max_pooling1d_3                    |   +32(+2.5%)         +8(+0.0%)            conv2d_of32[2]          
+     separable_conv1d_5_separableconv (Conv2D, SeparableConv1D)   [b:None,h:960,c:16]    128/512        122,880   separable_conv1d_5_conv2d          |   -512(-100.0%)      -122,880(-100.0%)   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6    batch_normalization_11 (ScaleBias, BatchNormalization)       [b:None,h:960,c:16]    32/128         30,720    separable_conv1d_5_separableconv   |   -128(-100.0%)      -30,720(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7    activation_6 (Nonlinearity, Activation)                      [b:None,h:960,c:16]                   15,360    batch_normalization_11             |                      -15,360(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8    max_pooling1d_4 (Pool, MaxPooling1D)                         [b:None,h:480,c:16]                   15,360    activation_6                       |   +576(+100.0%)      +138,256(+900.1%)    optimized_conv2d_of32[3]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9    separable_conv1d_6_conv2d (Conv2D, SeparableConv1D)          [b:None,h:480,c:16]    320/1,280      153,600   max_pooling1d_4                    |   +64(+5.0%)         +16(+0.0%)           conv2d_of32[4]          
+     separable_conv1d_6_separableconv (Conv2D, SeparableConv1D)   [b:None,h:480,c:32]    512/2,048      245,760   separable_conv1d_6_conv2d          |   -2,048(-100.0%)    -245,760(-100.0%)   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10   batch_normalization_12 (ScaleBias, BatchNormalization)       [b:None,h:480,c:32]    64/256         30,720    separable_conv1d_6_separableconv   |   -256(-100.0%)      -30,720(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11   activation_7 (Nonlinearity, Activation)                      [b:None,h:480,c:32]                   15,360    batch_normalization_12             |                      -15,360(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12   max_pooling1d_5 (Pool, MaxPooling1D)                         [b:None,h:240,c:32]                   15,360    activation_7                       |   +2,176(+100.0%)    +261,152(+1700.2%)   optimized_conv2d_of32[5]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13   separable_conv1d_7_conv2d (Conv2D, SeparableConv1D)          [b:None,h:240,c:32]    224/896        53,760    max_pooling1d_5                    |   +128(+14.3%)       +32(+0.1%)           conv2d_of32[6]          
+     separable_conv1d_7_separableconv (Conv2D, SeparableConv1D)   [b:None,h:240,c:128]   4,096/16,384   983,040   separable_conv1d_7_conv2d          |   -16,384(-100.0%)   -983,040(-100.0%)   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14   batch_normalization_13 (ScaleBias, BatchNormalization)       [b:None,h:240,c:128]   256/1,024      61,440    separable_conv1d_7_separableconv   |   -1,024(-100.0%)    -61,440(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15   activation_8 (Nonlinearity, Activation)                      [b:None,h:240,c:128]                  30,720    batch_normalization_13             |   +16,896(+100.0%)   +983,168(+3200.4%)   conv2d_of32[7]          
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16   conv1d_6_conv2d (Conv2D, Conv1D)                             [b:None,h:240,c:1]     385/1,540      92,161    activation_8                       |                      +240(+0.3%)          conv2d_of32[14]         
+     conv1d_6 (Nonlinearity, Conv1D)                              [b:None,h:240,c:1]                    240       conv1d_6_conv2d                    |                      -240(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17   conv1d_7_conv2d (Conv2D, Conv1D)                             [b:None,h:240,c:1]     385/1,540      92,161    activation_8                       |                      +240(+0.3%)          conv2d_of32[12]         
+     conv1d_7 (Nonlinearity, Conv1D)                              [b:None,h:240,c:1]                    240       conv1d_7_conv2d                    |                      -240(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+18   conv1d_8_conv2d (Conv2D, Conv1D)                             [b:None,h:240,c:1]     385/1,540      92,161    activation_8                       |                      +240(+0.3%)          conv2d_of32[10]         
+     conv1d_8 (Nonlinearity, Conv1D)                              [b:None,h:240,c:1]                    240       conv1d_8_conv2d                    |                      -240(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+19   conv1d_9_conv2d (Conv2D, Conv1D)                             [b:None,h:240,c:1]     385/1,540      92,161    activation_8                       |                      +240(+0.3%)          conv2d_of32[8]          
+     conv1d_9 (Nonlinearity, Conv1D)                              [b:None,h:240,c:1]                    240       conv1d_9_conv2d                    |                      -240(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+20   batch_normalization_14 (ScaleBias, BatchNormalization)       [b:None,h:240,c:1]     2/8            480       conv1d_6                           |                                           bn_of32[15]             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+21   batch_normalization_15 (ScaleBias, BatchNormalization)       [b:None,h:240,c:1]     2/8            480       conv1d_7                           |                                           bn_of32[13]             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+22   batch_normalization_16 (ScaleBias, BatchNormalization)       [b:None,h:240,c:1]     2/8            480       conv1d_8                           |                                           bn_of32[11]             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+23   batch_normalization_17 (ScaleBias, BatchNormalization)       [b:None,h:240,c:1]     2/8            480       conv1d_9                           |                                           bn_of32[9]              
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+24   concatenate_1 (Concat, Concatenate)                          [b:None,h:240,c:4]                              batch_normalization_14             |                                           concat_of32[16]         
+                                                                                                                  batch_normalization_15             |  
+                                                                                                                  batch_normalization_16             |  
+                                                                                                                  batch_normalization_17             |  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+25   conv1d_10_conv2d (Conv2D, Conv1D)                            [b:None,h:240,c:1]     5/20           961       concatenate_1                      |   -20(-100.0%)       -961(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+26   batch_normalization_18 (ScaleBias, BatchNormalization)       [b:None,h:240,c:1]     2/8            480       conv1d_10_conv2d                   |   -8(-100.0%)        -480(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27   activation_9 (Nonlinearity, Activation)                      [b:None,h:240,c:1]                    240       batch_normalization_18             |   +20(+100.0%)       +961(+400.4%)        conv2d_of32[17]         
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+28   up_sampling1d_2 (Upsample, UpSampling1D)                     [b:None,h:960,c:1]                              activation_9                       |                                           upsample_of32[18]       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+29   conv1d_11_conv2d (Conv2D, Conv1D)                            [b:None,h:960,c:1]     2/8            961       up_sampling1d_2                    |                      +960(+99.9%)         conv2d_of32[19]         
+     conv1d_11 (Nonlinearity, Conv1D)                             [b:None,h:960,c:1]                    960       conv1d_11_conv2d                   |                      -960(-100.0%)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30   batch_normalization_19 (ScaleBias, BatchNormalization)       [b:None,h:960,c:1]     2/8            1,920     conv1d_11                          |                                           bn_of32[20]             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31   up_sampling1d_3 (Upsample, UpSampling1D)                     [b:None,h:1920,c:1]                             batch_normalization_19             |                                           upsample_of32[21]       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+32   seg_out_conv2d (Conv2D, Conv1D)                              [b:None,h:1920,c:1]    4/16           5,761     up_sampling1d_3                    |                      +19,200(+333.3%)     conv2d_of32[o][22]      
+     seg_out (Nonlinearity, Conv1D)                               [b:None,h:1920,c:1]                   19,200    seg_out_conv2d                     |                      -19,200(-100.0%)    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+model/c-model: macc=2,713,687/2,559,848 -153,839(-5.7%) weights=30,476/29,960 -516(-1.7%) activations=--/125,808 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : ppg_motion_model
+c-name                : ppg_network
+c-node #              : 23
+c-array #             : 67
+activations size      : 125808 (1 segment)
+weights size          : 29960 (1 segment)
+macc                  : 2559848
+inputs                : ['input_2_output']
+outputs               : ['seg_out_conv2d_output']
+
+C-Arrays (67)
+----------------------------------------------------------------------------------------------------------------------------
+c_id   name (*_array)                              item/size      domain/mem-pool           c-type        fmt       comment
+----------------------------------------------------------------------------------------------------------------------------
+0      conv1d_6_conv2d_bias                        1/4            weights/weights           const float   float32          
+1      batch_normalization_14_scale                1/4            weights/weights           const float   float32          
+2      batch_normalization_14_bias                 1/4            weights/weights           const float   float32          
+3      separable_conv1d_4_conv2d_weights           80/320         weights/weights           const float   float32          
+4      conv1d_10_conv2d_weights                    4/16           weights/weights           const float   float32          
+5      separable_conv1d_4_conv2d_bias              1/4            weights/weights           const float   float32          
+6      conv1d_10_conv2d_bias                       1/4            weights/weights           const float   float32          
+7      separable_conv1d_4_separableconv_weights    8/32           weights/weights           const float   float32          
+8      conv1d_11_conv2d_weights                    1/4            weights/weights           const float   float32          
+9      separable_conv1d_4_separableconv_bias       8/32           weights/weights           const float   float32          
+10     conv1d_11_conv2d_bias                       1/4            weights/weights           const float   float32          
+11     separable_conv1d_5_conv2d_weights           320/1280       weights/weights           const float   float32          
+12     batch_normalization_19_scale                1/4            weights/weights           const float   float32          
+13     separable_conv1d_5_conv2d_bias              8/32           weights/weights           const float   float32          
+14     batch_normalization_19_bias                 1/4            weights/weights           const float   float32          
+15     separable_conv1d_5_separableconv_weights    128/512        weights/weights           const float   float32          
+16     seg_out_conv2d_weights                      3/12           weights/weights           const float   float32          
+17     separable_conv1d_5_separableconv_bias       16/64          weights/weights           const float   float32          
+18     seg_out_conv2d_bias                         1/4            weights/weights           const float   float32          
+19     input_2_output                              1920/7680      activations/**default**   float         float32   /input 
+20     separable_conv1d_4_conv2d_output            1920/7680      activations/**default**   float         float32          
+21     separable_conv1d_6_conv2d_weights           320/1280       weights/weights           const float   float32          
+22     separable_conv1d_4_separableconv_output     7680/30720     activations/**default**   float         float32          
+23     separable_conv1d_4_separableconv_scratch0   16/64          activations/**default**   float         float32          
+24     separable_conv1d_5_conv2d_output            7680/30720     activations/**default**   float         float32          
+25     separable_conv1d_6_conv2d_bias              16/64          weights/weights           const float   float32          
+26     separable_conv1d_5_separableconv_output     7680/30720     activations/**default**   float         float32          
+27     separable_conv1d_5_separableconv_scratch0   32/128         activations/**default**   float         float32          
+28     separable_conv1d_6_conv2d_output            7680/30720     activations/**default**   float         float32          
+29     separable_conv1d_6_separableconv_weights    512/2048       weights/weights           const float   float32          
+30     separable_conv1d_6_separableconv_output     7680/30720     activations/**default**   float         float32          
+31     separable_conv1d_6_separableconv_scratch0   64/256         activations/**default**   float         float32          
+32     separable_conv1d_7_conv2d_output            7680/30720     activations/**default**   float         float32          
+33     separable_conv1d_6_separableconv_bias       32/128         weights/weights           const float   float32          
+34     separable_conv1d_7_separableconv_output     30720/122880   activations/**default**   float         float32          
+35     conv1d_9_conv2d_output                      240/960        activations/**default**   float         float32          
+36     separable_conv1d_7_conv2d_weights           224/896        weights/weights           const float   float32          
+37     batch_normalization_17_output               240/960        activations/**default**   float         float32          
+38     conv1d_8_conv2d_output                      240/960        activations/**default**   float         float32          
+39     separable_conv1d_7_conv2d_bias              32/128         weights/weights           const float   float32          
+40     batch_normalization_16_output               240/960        activations/**default**   float         float32          
+41     conv1d_7_conv2d_output                      240/960        activations/**default**   float         float32          
+42     separable_conv1d_7_separableconv_weights    4096/16384     weights/weights           const float   float32          
+43     batch_normalization_15_output               240/960        activations/**default**   float         float32          
+44     conv1d_6_conv2d_output                      240/960        activations/**default**   float         float32          
+45     separable_conv1d_7_separableconv_bias       128/512        weights/weights           const float   float32          
+46     batch_normalization_14_output               240/960        activations/**default**   float         float32          
+47     concatenate_1_output                        960/3840       activations/**default**   float         float32          
+48     conv1d_9_conv2d_weights                     384/1536       weights/weights           const float   float32          
+49     conv1d_10_conv2d_output                     240/960        activations/**default**   float         float32          
+50     up_sampling1d_2_output                      960/3840       activations/**default**   float         float32          
+51     conv1d_9_conv2d_bias                        1/4            weights/weights           const float   float32          
+52     conv1d_11_conv2d_output                     960/3840       activations/**default**   float         float32          
+53     batch_normalization_19_output               960/3840       activations/**default**   float         float32          
+54     batch_normalization_17_scale                1/4            weights/weights           const float   float32          
+55     up_sampling1d_3_output                      1920/7680      activations/**default**   float         float32          
+56     seg_out_conv2d_output                       1920/7680      activations/**default**   float         float32   /output
+57     batch_normalization_17_bias                 1/4            weights/weights           const float   float32          
+58     conv1d_8_conv2d_weights                     384/1536       weights/weights           const float   float32          
+59     conv1d_8_conv2d_bias                        1/4            weights/weights           const float   float32          
+60     batch_normalization_16_scale                1/4            weights/weights           const float   float32          
+61     batch_normalization_16_bias                 1/4            weights/weights           const float   float32          
+62     conv1d_7_conv2d_weights                     384/1536       weights/weights           const float   float32          
+63     conv1d_7_conv2d_bias                        1/4            weights/weights           const float   float32          
+64     batch_normalization_15_scale                1/4            weights/weights           const float   float32          
+65     batch_normalization_15_bias                 1/4            weights/weights           const float   float32          
+66     conv1d_6_conv2d_weights                     384/1536       weights/weights           const float   float32          
+----------------------------------------------------------------------------------------------------------------------------
+
+C-Layers (23)
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+c_id   name (*_layer)                     id   layer_type          macc      rom     tensors                                        shape (array id)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+0      separable_conv1d_4_conv2d          1    conv2d              153601    324     I: input_2_output                              (1,1920,1,1) (19) 
+                                                                                     W: separable_conv1d_4_conv2d_weights           (1,1,80,1) (3)    
+                                                                                     W: separable_conv1d_4_conv2d_bias              (1,1,1,1) (5)     
+                                                                                     O: separable_conv1d_4_conv2d_output            (1,1920,1,1) (20) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+1      separable_conv1d_4_separableconv   4    optimized_conv2d    46088     64      I: separable_conv1d_4_conv2d_output            (1,1920,1,1) (20) 
+                                                                                     S: separable_conv1d_4_separableconv_scratch0                     
+                                                                                     W: separable_conv1d_4_separableconv_weights    (1,8,1,1) (7)     
+                                                                                     W: separable_conv1d_4_separableconv_bias       (1,1,1,8) (9)     
+                                                                                     O: separable_conv1d_4_separableconv_output     (1,960,1,8) (22)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2      separable_conv1d_5_conv2d          5    conv2d              307208    1312    I: separable_conv1d_4_separableconv_output     (1,960,1,8) (22)  
+                                                                                     W: separable_conv1d_5_conv2d_weights           (1,8,40,1) (11)   
+                                                                                     W: separable_conv1d_5_conv2d_bias              (1,1,1,8) (13)    
+                                                                                     O: separable_conv1d_5_conv2d_output            (1,960,1,8) (24)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3      separable_conv1d_5_separableconv   8    optimized_conv2d    153616    576     I: separable_conv1d_5_conv2d_output            (1,960,1,8) (24)  
+                                                                                     S: separable_conv1d_5_separableconv_scratch0                     
+                                                                                     W: separable_conv1d_5_separableconv_weights    (8,16,1,1) (15)   
+                                                                                     W: separable_conv1d_5_separableconv_bias       (1,1,1,16) (17)   
+                                                                                     O: separable_conv1d_5_separableconv_output     (1,480,1,16) (26) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+4      separable_conv1d_6_conv2d          9    conv2d              153616    1344    I: separable_conv1d_5_separableconv_output     (1,480,1,16) (26) 
+                                                                                     W: separable_conv1d_6_conv2d_weights           (1,16,20,1) (21)  
+                                                                                     W: separable_conv1d_6_conv2d_bias              (1,1,1,16) (25)   
+                                                                                     O: separable_conv1d_6_conv2d_output            (1,480,1,16) (28) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+5      separable_conv1d_6_separableconv   12   optimized_conv2d    276512    2176    I: separable_conv1d_6_conv2d_output            (1,480,1,16) (28) 
+                                                                                     S: separable_conv1d_6_separableconv_scratch0                     
+                                                                                     W: separable_conv1d_6_separableconv_weights    (16,32,1,1) (29)  
+                                                                                     W: separable_conv1d_6_separableconv_bias       (1,1,1,32) (33)   
+                                                                                     O: separable_conv1d_6_separableconv_output     (1,240,1,32) (30) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+6      separable_conv1d_7_conv2d          13   conv2d              53792     1024    I: separable_conv1d_6_separableconv_output     (1,240,1,32) (30) 
+                                                                                     W: separable_conv1d_7_conv2d_weights           (1,32,7,1) (36)   
+                                                                                     W: separable_conv1d_7_conv2d_bias              (1,1,1,32) (39)   
+                                                                                     O: separable_conv1d_7_conv2d_output            (1,240,1,32) (32) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+7      separable_conv1d_7_separableconv   15   conv2d              1013888   16896   I: separable_conv1d_7_conv2d_output            (1,240,1,32) (32) 
+                                                                                     W: separable_conv1d_7_separableconv_weights    (32,128,1,1) (42) 
+                                                                                     W: separable_conv1d_7_separableconv_bias       (1,1,1,128) (45)  
+                                                                                     O: separable_conv1d_7_separableconv_output     (1,240,1,128) (34)
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+8      conv1d_9_conv2d                    19   conv2d              92401     1540    I: separable_conv1d_7_separableconv_output     (1,240,1,128) (34)
+                                                                                     W: conv1d_9_conv2d_weights                     (128,1,3,1) (48)  
+                                                                                     W: conv1d_9_conv2d_bias                        (1,1,1,1) (51)    
+                                                                                     O: conv1d_9_conv2d_output                      (1,240,1,1) (35)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+9      batch_normalization_17             23   bn                  480       8       I: conv1d_9_conv2d_output                      (1,240,1,1) (35)  
+                                                                                     W: batch_normalization_17_scale                (1,1,1,1) (54)    
+                                                                                     W: batch_normalization_17_bias                 (1,1,1,1) (57)    
+                                                                                     O: batch_normalization_17_output               (1,240,1,1) (37)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+10     conv1d_8_conv2d                    18   conv2d              92401     1540    I: separable_conv1d_7_separableconv_output     (1,240,1,128) (34)
+                                                                                     W: conv1d_8_conv2d_weights                     (128,1,3,1) (58)  
+                                                                                     W: conv1d_8_conv2d_bias                        (1,1,1,1) (59)    
+                                                                                     O: conv1d_8_conv2d_output                      (1,240,1,1) (38)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+11     batch_normalization_16             22   bn                  480       8       I: conv1d_8_conv2d_output                      (1,240,1,1) (38)  
+                                                                                     W: batch_normalization_16_scale                (1,1,1,1) (60)    
+                                                                                     W: batch_normalization_16_bias                 (1,1,1,1) (61)    
+                                                                                     O: batch_normalization_16_output               (1,240,1,1) (40)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+12     conv1d_7_conv2d                    17   conv2d              92401     1540    I: separable_conv1d_7_separableconv_output     (1,240,1,128) (34)
+                                                                                     W: conv1d_7_conv2d_weights                     (128,1,3,1) (62)  
+                                                                                     W: conv1d_7_conv2d_bias                        (1,1,1,1) (63)    
+                                                                                     O: conv1d_7_conv2d_output                      (1,240,1,1) (41)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+13     batch_normalization_15             21   bn                  480       8       I: conv1d_7_conv2d_output                      (1,240,1,1) (41)  
+                                                                                     W: batch_normalization_15_scale                (1,1,1,1) (64)    
+                                                                                     W: batch_normalization_15_bias                 (1,1,1,1) (65)    
+                                                                                     O: batch_normalization_15_output               (1,240,1,1) (43)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+14     conv1d_6_conv2d                    16   conv2d              92401     1540    I: separable_conv1d_7_separableconv_output     (1,240,1,128) (34)
+                                                                                     W: conv1d_6_conv2d_weights                     (128,1,3,1) (66)  
+                                                                                     W: conv1d_6_conv2d_bias                        (1,1,1,1) (0)     
+                                                                                     O: conv1d_6_conv2d_output                      (1,240,1,1) (44)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+15     batch_normalization_14             20   bn                  480       8       I: conv1d_6_conv2d_output                      (1,240,1,1) (44)  
+                                                                                     W: batch_normalization_14_scale                (1,1,1,1) (1)     
+                                                                                     W: batch_normalization_14_bias                 (1,1,1,1) (2)     
+                                                                                     O: batch_normalization_14_output               (1,240,1,1) (46)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+16     concatenate_1                      24   concat              0         0       I: batch_normalization_14_output               (1,240,1,1) (46)  
+                                                                                     I: batch_normalization_15_output               (1,240,1,1) (43)  
+                                                                                     I: batch_normalization_16_output               (1,240,1,1) (40)  
+                                                                                     I: batch_normalization_17_output               (1,240,1,1) (37)  
+                                                                                     O: concatenate_1_output                        (1,240,1,4) (47)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+17     conv1d_10_conv2d                   27   conv2d              1201      20      I: concatenate_1_output                        (1,240,1,4) (47)  
+                                                                                     W: conv1d_10_conv2d_weights                    (4,1,1,1) (4)     
+                                                                                     W: conv1d_10_conv2d_bias                       (1,1,1,1) (6)     
+                                                                                     O: conv1d_10_conv2d_output                     (1,240,1,1) (49)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+18     up_sampling1d_2                    28   upsample            0         0       I: conv1d_10_conv2d_output                     (1,240,1,1) (49)  
+                                                                                     O: up_sampling1d_2_output                      (1,960,1,1) (50)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+19     conv1d_11_conv2d                   29   conv2d              1921      8       I: up_sampling1d_2_output                      (1,960,1,1) (50)  
+                                                                                     W: conv1d_11_conv2d_weights                    (1,1,1,1) (8)     
+                                                                                     W: conv1d_11_conv2d_bias                       (1,1,1,1) (10)    
+                                                                                     O: conv1d_11_conv2d_output                     (1,960,1,1) (52)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+20     batch_normalization_19             30   bn                  1920      8       I: conv1d_11_conv2d_output                     (1,960,1,1) (52)  
+                                                                                     W: batch_normalization_19_scale                (1,1,1,1) (12)    
+                                                                                     W: batch_normalization_19_bias                 (1,1,1,1) (14)    
+                                                                                     O: batch_normalization_19_output               (1,960,1,1) (53)  
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+21     up_sampling1d_3                    31   upsample            0         0       I: batch_normalization_19_output               (1,960,1,1) (53)  
+                                                                                     O: up_sampling1d_3_output                      (1,1920,1,1) (55) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+22     seg_out_conv2d                     32   conv2d              24961     16      I: up_sampling1d_3_output                      (1,1920,1,1) (55) 
+                                                                                     W: seg_out_conv2d_weights                      (1,1,3,1) (16)    
+                                                                                     W: seg_out_conv2d_bias                         (1,1,1,1) (18)    
+                                                                                     O: seg_out_conv2d_output                       (1,1920,1,1) (56) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Number of operations per c-layer
+------------------------------------------------------------------------------------------------------------------------------
+c_id    m_id   name (type)                                           #op (type)                       #param (sparsity)      
+------------------------------------------------------------------------------------------------------------------------------
+0       1      separable_conv1d_4_conv2d (conv2d)                            153,601 (smul_f32_f32)               81 (0.0123)
+1       4      separable_conv1d_4_separableconv (optimized_conv2d)            46,088 (smul_f32_f32)               16 (0.0000)
+2       5      separable_conv1d_5_conv2d (conv2d)                            307,208 (smul_f32_f32)              328 (0.0244)
+3       8      separable_conv1d_5_separableconv (optimized_conv2d)           153,616 (smul_f32_f32)              144 (0.0000)
+4       9      separable_conv1d_6_conv2d (conv2d)                            153,616 (smul_f32_f32)              336 (0.0476)
+5       12     separable_conv1d_6_separableconv (optimized_conv2d)           276,512 (smul_f32_f32)              544 (0.0000)
+6       13     separable_conv1d_7_conv2d (conv2d)                             53,792 (smul_f32_f32)              256 (0.1250)
+7       15     separable_conv1d_7_separableconv (conv2d)                   1,013,888 (smul_f32_f32)            4,224 (0.0000)
+8       19     conv1d_9_conv2d (conv2d)                                       92,401 (smul_f32_f32)              385 (0.0000)
+9       23     batch_normalization_17 (bn)                                       480 (smul_f32_f32)                2 (0.0000)
+10      18     conv1d_8_conv2d (conv2d)                                       92,401 (smul_f32_f32)              385 (0.0000)
+11      22     batch_normalization_16 (bn)                                       480 (smul_f32_f32)                2 (0.0000)
+12      17     conv1d_7_conv2d (conv2d)                                       92,401 (smul_f32_f32)              385 (0.0000)
+13      21     batch_normalization_15 (bn)                                       480 (smul_f32_f32)                2 (0.0000)
+14      16     conv1d_6_conv2d (conv2d)                                       92,401 (smul_f32_f32)              385 (0.0000)
+15      20     batch_normalization_14 (bn)                                       480 (smul_f32_f32)                2 (0.0000)
+16      24     concatenate_1 (concat)                                              0 (op_f32_f32)                            
+17      27     conv1d_10_conv2d (conv2d)                                       1,201 (smul_f32_f32)                5 (0.0000)
+18      28     up_sampling1d_2 (upsample)                                          0 (smul_f32_f32)                          
+19      29     conv1d_11_conv2d (conv2d)                                       1,921 (smul_f32_f32)                2 (0.0000)
+20      30     batch_normalization_19 (bn)                                     1,920 (smul_f32_f32)                2 (0.0000)
+21      31     up_sampling1d_3 (upsample)                                          0 (smul_f32_f32)                          
+22      32     seg_out_conv2d (conv2d)                                        24,961 (smul_f32_f32)                4 (0.0000)
+------------------------------------------------------------------------------------------------------------------------------
+total                                                                      2,559,848                           7,490 (0.0076)
+
+  Number of operation types
+  ---------------------------------------------
+  smul_f32_f32           2,559,848      100.0%
+  op_f32_f32                     0        0.0%
+
+Complexity report (model)
+--------------------------------------------------------------------------------------------
+m_id   name                        c_macc                    c_rom                     c_id
+--------------------------------------------------------------------------------------------
+1      separable_conv1d_4_conv2d   |||                6.0%   |                  1.1%   [0] 
+4      max_pooling1d_3             |                  1.8%   |                  0.2%   [1] 
+5      separable_conv1d_5_conv2d   |||||             12.0%   ||                 4.4%   [2] 
+8      max_pooling1d_4             |||                6.0%   |                  1.9%   [3] 
+9      separable_conv1d_6_conv2d   |||                6.0%   ||                 4.5%   [4] 
+12     max_pooling1d_5             |||||             10.8%   ||                 7.3%   [5] 
+13     separable_conv1d_7_conv2d   |                  2.1%   |                  3.4%   [6] 
+15     activation_8                ||||||||||||||||  39.6%   ||||||||||||||||  56.4%   [7] 
+16     conv1d_6_conv2d             ||                 3.6%   ||                 5.1%   [14]
+17     conv1d_7_conv2d             ||                 3.6%   ||                 5.1%   [12]
+18     conv1d_8_conv2d             ||                 3.6%   ||                 5.1%   [10]
+19     conv1d_9_conv2d             ||                 3.6%   ||                 5.1%   [8] 
+20     batch_normalization_14      |                  0.0%   |                  0.0%   [15]
+21     batch_normalization_15      |                  0.0%   |                  0.0%   [13]
+22     batch_normalization_16      |                  0.0%   |                  0.0%   [11]
+23     batch_normalization_17      |                  0.0%   |                  0.0%   [9] 
+24     concatenate_1               |                  0.0%   |                  0.0%   [16]
+27     activation_9                |                  0.0%   |                  0.1%   [17]
+28     up_sampling1d_2             |                  0.0%   |                  0.0%   [18]
+29     conv1d_11_conv2d            |                  0.1%   |                  0.0%   [19]
+30     batch_normalization_19      |                  0.1%   |                  0.0%   [20]
+31     up_sampling1d_3             |                  0.0%   |                  0.0%   [21]
+32     seg_out_conv2d              |                  1.0%   |                  0.1%   [22]
+--------------------------------------------------------------------------------------------
+macc=2,559,848 weights=29,960 act=125,808 ram_io=0
+
+Generated files (7)
+--------------------------------------------------------------------------
+C:\Users\Z\.stm32cubemx\network_output\ppg_network_config.h
+C:\Users\Z\.stm32cubemx\network_output\ppg_network.h
+C:\Users\Z\.stm32cubemx\network_output\ppg_network.c
+C:\Users\Z\.stm32cubemx\network_output\ppg_network_data_params.h
+C:\Users\Z\.stm32cubemx\network_output\ppg_network_data_params.c
+C:\Users\Z\.stm32cubemx\network_output\ppg_network_data.h
+C:\Users\Z\.stm32cubemx\network_output\ppg_network_data.c

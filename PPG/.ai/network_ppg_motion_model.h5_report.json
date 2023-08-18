@@ -1,0 +1,1102 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "analyze --name network -m D:/zzz/ML/Segade-main/ppg_motion_model.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\Z\\AppData\\Local\\Temp\\mxAI_workspace99195197003730013969080235781713718 --output C:\\Users\\Z\\.stm32cubemx\\network_output --allocate-inputs --series stm32f7 --allocate-outputs",
+    "cli_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 7
+    },
+    "cli_version_str": "1.7.0",
+    "compression": {
+        "factor": null,
+        "layers": {}
+    },
+    "date_time": "Sat Apr 15 00:45:44 2023",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "analyze",
+    "exec_duration": 0.0,
+    "hash": "d194b1a5ee37949b574bff94572917cb",
+    "inputs": [
+        "input_2"
+    ],
+    "layers": [
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 7680,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1920,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "input_2",
+            "original": "InputLayer",
+            "type": "Input"
+        },
+        {
+            "c_id": [
+                0
+            ],
+            "extras": {
+                "n_macc": 153600,
+                "n_params": 80,
+                "psize": 320,
+                "rom_output": {
+                    "c_size": 7680,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1920,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 324
+            },
+            "id": 1,
+            "inputs": [
+                "input_2"
+            ],
+            "name": "separable_conv1d_4_conv2d",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 8,
+                "psize": 32,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        960,
+                        1,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "separable_conv1d_4_conv2d"
+            ],
+            "name": "separable_conv1d_4_separableconv",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 30720,
+                "n_params": 16,
+                "psize": 64,
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [
+                "separable_conv1d_4_separableconv"
+            ],
+            "name": "batch_normalization_10",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [
+                "batch_normalization_10"
+            ],
+            "name": "activation_5",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                1
+            ],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 64
+            },
+            "id": 4,
+            "inputs": [
+                "activation_5"
+            ],
+            "name": "max_pooling1d_3",
+            "original": "MaxPooling1D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [
+                2
+            ],
+            "extras": {
+                "n_macc": 307200,
+                "n_params": 320,
+                "psize": 1280,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        960,
+                        1,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 1312
+            },
+            "id": 5,
+            "inputs": [
+                "max_pooling1d_3"
+            ],
+            "name": "separable_conv1d_5_conv2d",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 122880,
+                "n_params": 128,
+                "psize": 512,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        480,
+                        1,
+                        16,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 5,
+            "inputs": [
+                "separable_conv1d_5_conv2d"
+            ],
+            "name": "separable_conv1d_5_separableconv",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 30720,
+                "n_params": 32,
+                "psize": 128,
+                "rom_size": 0
+            },
+            "id": 6,
+            "inputs": [
+                "separable_conv1d_5_separableconv"
+            ],
+            "name": "batch_normalization_11",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 7,
+            "inputs": [
+                "batch_normalization_11"
+            ],
+            "name": "activation_6",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                3
+            ],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 576
+            },
+            "id": 8,
+            "inputs": [
+                "activation_6"
+            ],
+            "name": "max_pooling1d_4",
+            "original": "MaxPooling1D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [
+                4
+            ],
+            "extras": {
+                "n_macc": 153600,
+                "n_params": 320,
+                "psize": 1280,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        480,
+                        1,
+                        16,
+                        1
+                    ]
+                },
+                "rom_size": 1344
+            },
+            "id": 9,
+            "inputs": [
+                "max_pooling1d_4"
+            ],
+            "name": "separable_conv1d_6_conv2d",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 245760,
+                "n_params": 512,
+                "psize": 2048,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 9,
+            "inputs": [
+                "separable_conv1d_6_conv2d"
+            ],
+            "name": "separable_conv1d_6_separableconv",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 30720,
+                "n_params": 64,
+                "psize": 256,
+                "rom_size": 0
+            },
+            "id": 10,
+            "inputs": [
+                "separable_conv1d_6_separableconv"
+            ],
+            "name": "batch_normalization_12",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 11,
+            "inputs": [
+                "batch_normalization_12"
+            ],
+            "name": "activation_7",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                5
+            ],
+            "extras": {
+                "n_macc": 15360,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 2176
+            },
+            "id": 12,
+            "inputs": [
+                "activation_7"
+            ],
+            "name": "max_pooling1d_5",
+            "original": "MaxPooling1D",
+            "type": "Pool"
+        },
+        {
+            "c_id": [
+                6
+            ],
+            "extras": {
+                "n_macc": 53760,
+                "n_params": 224,
+                "psize": 896,
+                "rom_output": {
+                    "c_size": 30720,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 1024
+            },
+            "id": 13,
+            "inputs": [
+                "max_pooling1d_5"
+            ],
+            "name": "separable_conv1d_7_conv2d",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 983040,
+                "n_params": 4096,
+                "psize": 16384,
+                "rom_output": {
+                    "c_size": 122880,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        128,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 13,
+            "inputs": [
+                "separable_conv1d_7_conv2d"
+            ],
+            "name": "separable_conv1d_7_separableconv",
+            "original": "SeparableConv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 61440,
+                "n_params": 256,
+                "psize": 1024,
+                "rom_size": 0
+            },
+            "id": 14,
+            "inputs": [
+                "separable_conv1d_7_separableconv"
+            ],
+            "name": "batch_normalization_13",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                7
+            ],
+            "extras": {
+                "n_macc": 30720,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 16896
+            },
+            "id": 15,
+            "inputs": [
+                "batch_normalization_13"
+            ],
+            "name": "activation_8",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                14
+            ],
+            "extras": {
+                "n_macc": 92161,
+                "n_params": 385,
+                "psize": 1540,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 1540
+            },
+            "id": 16,
+            "inputs": [
+                "activation_8"
+            ],
+            "name": "conv1d_6_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 240,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 16,
+            "inputs": [
+                "conv1d_6_conv2d"
+            ],
+            "name": "conv1d_6",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                12
+            ],
+            "extras": {
+                "n_macc": 92161,
+                "n_params": 385,
+                "psize": 1540,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 1540
+            },
+            "id": 17,
+            "inputs": [
+                "activation_8"
+            ],
+            "name": "conv1d_7_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 240,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 17,
+            "inputs": [
+                "conv1d_7_conv2d"
+            ],
+            "name": "conv1d_7",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                10
+            ],
+            "extras": {
+                "n_macc": 92161,
+                "n_params": 385,
+                "psize": 1540,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 1540
+            },
+            "id": 18,
+            "inputs": [
+                "activation_8"
+            ],
+            "name": "conv1d_8_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 240,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 18,
+            "inputs": [
+                "conv1d_8_conv2d"
+            ],
+            "name": "conv1d_8",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                8
+            ],
+            "extras": {
+                "n_macc": 92161,
+                "n_params": 385,
+                "psize": 1540,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 1540
+            },
+            "id": 19,
+            "inputs": [
+                "activation_8"
+            ],
+            "name": "conv1d_9_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 240,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 19,
+            "inputs": [
+                "conv1d_9_conv2d"
+            ],
+            "name": "conv1d_9",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                15
+            ],
+            "extras": {
+                "n_macc": 480,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 20,
+            "inputs": [
+                "conv1d_6"
+            ],
+            "name": "batch_normalization_14",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                13
+            ],
+            "extras": {
+                "n_macc": 480,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 21,
+            "inputs": [
+                "conv1d_7"
+            ],
+            "name": "batch_normalization_15",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                11
+            ],
+            "extras": {
+                "n_macc": 480,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 22,
+            "inputs": [
+                "conv1d_8"
+            ],
+            "name": "batch_normalization_16",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                9
+            ],
+            "extras": {
+                "n_macc": 480,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 23,
+            "inputs": [
+                "conv1d_9"
+            ],
+            "name": "batch_normalization_17",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                16
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 3840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        4,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 24,
+            "inputs": [
+                "batch_normalization_14",
+                "batch_normalization_15",
+                "batch_normalization_16",
+                "batch_normalization_17"
+            ],
+            "name": "concatenate_1",
+            "original": "Concatenate",
+            "type": "Concat"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 961,
+                "n_params": 5,
+                "psize": 20,
+                "rom_output": {
+                    "c_size": 960,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        240,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 25,
+            "inputs": [
+                "concatenate_1"
+            ],
+            "name": "conv1d_10_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 480,
+                "n_params": 2,
+                "psize": 8,
+                "rom_size": 0
+            },
+            "id": 26,
+            "inputs": [
+                "conv1d_10_conv2d"
+            ],
+            "name": "batch_normalization_18",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                17
+            ],
+            "extras": {
+                "n_macc": 240,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 20
+            },
+            "id": 27,
+            "inputs": [
+                "batch_normalization_18"
+            ],
+            "name": "activation_9",
+            "original": "Activation",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                18
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 3840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        960,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 28,
+            "inputs": [
+                "activation_9"
+            ],
+            "name": "up_sampling1d_2",
+            "original": "UpSampling1D",
+            "type": "Upsample"
+        },
+        {
+            "c_id": [
+                19
+            ],
+            "extras": {
+                "n_macc": 961,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 3840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        960,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 29,
+            "inputs": [
+                "up_sampling1d_2"
+            ],
+            "name": "conv1d_11_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 960,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 29,
+            "inputs": [
+                "conv1d_11_conv2d"
+            ],
+            "name": "conv1d_11",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                20
+            ],
+            "extras": {
+                "n_macc": 1920,
+                "n_params": 2,
+                "psize": 8,
+                "rom_output": {
+                    "c_size": 3840,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        960,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 8
+            },
+            "id": 30,
+            "inputs": [
+                "conv1d_11"
+            ],
+            "name": "batch_normalization_19",
+            "original": "BatchNormalization",
+            "type": "ScaleBias"
+        },
+        {
+            "c_id": [
+                21
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 7680,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1920,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 31,
+            "inputs": [
+                "batch_normalization_19"
+            ],
+            "name": "up_sampling1d_3",
+            "original": "UpSampling1D",
+            "type": "Upsample"
+        },
+        {
+            "c_id": [
+                22
+            ],
+            "extras": {
+                "n_macc": 5761,
+                "n_params": 4,
+                "psize": 16,
+                "rom_output": {
+                    "c_size": 7680,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1920,
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 16
+            },
+            "id": 32,
+            "inputs": [
+                "up_sampling1d_3"
+            ],
+            "name": "seg_out_conv2d",
+            "original": "Conv1D",
+            "type": "Conv2D"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 19200,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 32,
+            "inputs": [
+                "seg_out_conv2d"
+            ],
+            "name": "seg_out",
+            "original": "Conv1D",
+            "type": "Nonlinearity"
+        }
+    ],
+    "model_files": [
+        "D:\\zzz\\ML\\Segade-main\\ppg_motion_model.h5"
+    ],
+    "model_n_params": 7619,
+    "model_name": "ppg_motion_model",
+    "model_size": 30476,
+    "model_type": "keras",
+    "name": "network",
+    "outputs": [
+        "seg_out_conv2d"
+    ],
+    "ram_io_size": [
+        7680,
+        7680
+    ],
+    "ram_size": [
+        125788,
+        125788
+    ],
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 7680,
+            "c_type": "float",
+            "name": "input_2"
+        }
+    ],
+    "rom_n_macc": 2559848,
+    "rom_outputs": [
+        {
+            "c_size": 7680,
+            "c_type": "float",
+            "name": "seg_out_conv2d"
+        }
+    ],
+    "rom_size": 29960,
+    "strategy": "heap_overlay",
+    "tools_api_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 7
+    },
+    "tools_version": {
+        "extra": "19389",
+        "major": 8,
+        "micro": 0,
+        "minor": 0
+    },
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}
